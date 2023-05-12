@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
-const connectDB = require('./config/dbConn');
+const connectDB = require('../db/database');
 const PORT = process.env.PORT || 3500;
 
 // Connect to MongoDB
@@ -12,8 +12,8 @@ connectDB();
 app.use(cors());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
-app.use('/', require('./routes/root'));
-app.use('/states', require('./routes/api/states'));
+app.use('/', require('../route/root'));
+app.use('/states', require('../route/api/states'));
 
 app.all('*', (req, res) => {
     res.status(404);
